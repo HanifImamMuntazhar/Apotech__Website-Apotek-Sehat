@@ -9,8 +9,11 @@ Website **APOTECH** hadir sebagai platform digital yang menyajikan informasi len
 Fitur utama website ini mencakup **daftar obat** yang mencakup deskripsi, indikasi, kontraindikasi, efek samping, dan golongan obat, memberikan pengguna pemahaman yang lebih baik tentang setiap obat. Selain itu, **pie chart distribusi golongan obat** yang interaktif memungkinkan pengguna melihat dengan jelas proporsi masing-masing golongan obat yang tersedia. Dengan **Chart.js**, grafik ini memberikan gambaran visual yang menarik dan mudah dipahami.
 APOTECH bertujuan untuk menyediakan **informasi medis yang akurat dan transparan**, membantu pengguna membuat keputusan yang lebih baik terkait kesehatan mereka. Website ini juga dilengkapi dengan footer yang mencantumkan informasi hak cipta dan penegasan bahwa APOTECH dibangun dengan dedikasi untuk kesehatan. Dengan kombinasi **informasi yang berguna**, **desain menarik**, dan **kemudahan navigasi**, APOTECH menjadi sumber daya utama untuk memahami obat-obatan dengan cara yang lebih interaktif dan informatif.
 
-![image](https://github.com/user-attachments/assets/19e79300-fa47-4013-b15b-cd984ab5f4c3)!![image](https://github.com/user-attachments/assets/aee41db6-b2ad-4a8c-8076-54891e1086e7)
-[image](https://github.com/user-attachments/assets/5e57700f-d9e6-4fcc-8b0d-ab562b942a2f)![image](https://github.com/user-attachments/assets/e4440ea8-3755-4aca-ac68-9b2a2c0fc1b2)![image](https://github.com/user-attachments/assets/9ca25093-e103-4c6e-a044-769b91277255)
+![image](https://github.com/user-attachments/assets/ca453127-071c-4bd9-a3b1-bd4f5ef5ded6)![image](https://github.com/user-attachments/assets/949f437b-9db1-4a36-8079-07a220a9fa58)![image](https://github.com/user-attachments/assets/fb4f7350-3a1b-4903-9bb3-546a452d9c1d)![image](https://github.com/user-attachments/assets/b9f67e54-18f1-4a7f-ad2d-6eab6cf6a95b)![image](https://github.com/user-attachments/assets/fe34b682-5c05-4f2e-a429-1c5e308dd632)![image](https://github.com/user-attachments/assets/5ea65fa7-42d6-4cce-8b3f-8a0573ca0bbd)
+
+
+
+
 
 
 
