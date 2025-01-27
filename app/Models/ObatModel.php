@@ -12,7 +12,7 @@ class ObatModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['nama_obat', 'harga', 'stok'];
+    protected $allowedFields    = ['nama_obat', 'deskripsi', 'indikasi', 'kontraindikasi', 'efek_samping', 'golongan'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;

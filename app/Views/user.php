@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="APOTECH - Solusi Kesehatan Anda" />
     <meta name="author" content="APOTECH" />
-    <title>APOTECH - Inovasi Hidup Sehat</title>
+    <title>APOTECH - Halaman User</title>
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Font Awesome icons -->
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -39,7 +39,7 @@
         .hero {
             background: linear-gradient(90deg, #0072ff, #00c6ff);
             color: white;
-            height: 100vh;
+            height: 60vh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -100,6 +100,15 @@
         .footer a:hover {
             color: white;
         }
+        /* Custom style untuk tombol logout */
+        .btn-logout {
+            background-color: #dc3545; /* Warna merah */
+            color: white;
+            border: none;
+        }
+        .btn-logout:hover {
+            background-color: #c82333; /* Warna merah lebih gelap saat hover */
+        }
     </style>
 </head>
 <body id="page-top">
@@ -115,8 +124,12 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
                     <li class="nav-item"><a class="nav-link" href="#projects">Konsultasi Dokter</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#signup" id="adminLoginLink">Login Admin</a></li>
+                    <!-- Tombol Login Admin (Nonaktif) -->
+                    <li class="nav-item"><a class="nav-link" href="#" id="adminLoginLink">Login Admin</a></li>
                 </ul>
+                <!-- Tombol Logout di Navbar -->
+                <a class="btn btn-logout btn-sm ms-3" href="/user/logout">Logout</a>
+                <a class="btn btn-success btn-sm ms-3" href="/daftar-obat">Lihat Daftar Obat</a>
             </div>
         </div>
     </nav>
@@ -124,9 +137,10 @@
     <!-- Hero Section -->
     <header class="hero">
         <div class="container">
-            <h1>APOTECH</h1>
-            <h2>Inovasi untuk Hidup Sehat</h2>
-            <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>
+            <h1>Selamat Datang, Pengguna!</h1>
+            <h2>APOTECH - Solusi Kesehatan Anda</h2>
+            <!-- Hapus tombol Login dan hanya tampilkan tombol Dashboard -->
+            <a class="btn btn-primary" href="/user/dashboard">Dashboard</a>
         </div>
     </header>
 
@@ -183,124 +197,7 @@
         </div>
     </footer>
 
-    <!-- Modal Login -->
-    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="loginModalLabel">Login Member</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form action="<?= base_url('auth/userAuth/processLogin') ?>" method="post">
-                        <div class="mb-3">
-                            <label for="loginUsername" class="form-label">Username</label>
-                            <input type="text" class="form-control" id="loginUsername" name="username" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="loginPassword" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="loginPassword" name="password" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Login</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Daftar -->
-    <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="registerModalLabel">Daftar Member Baru</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form action="<?= base_url('auth/processRegister') ?>" method="post">
-                        <div class="mb-3">
-                            <label for="registerUsername" class="form-label">Username</label>
-                            <input type="text" class="form-control" id="registerUsername" name="username" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="registerPassword" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="registerPassword" name="password" required>
-                        </div>
-                        <button type="submit" class="btn btn-success">Daftar</button>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <p>Sudah punya akun? <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-dismiss="modal">Login di sini</a></p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Login Admin -->
-    <div class="modal fade" id="adminLoginModal" tabindex="-1" aria-labelledby="adminLoginModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="adminLoginModalLabel">Login Admin</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <?php if (session()->getFlashdata('error')): ?>
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            <?= session()->getFlashdata('error'); ?>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                    <?php endif; ?>
-                    <form action="<?= base_url('/admin/processLogin') ?>" method="post">
-                        <div class="mb-3">
-                            <label for="adminUsername" class="form-label">Username</label>
-                            <input type="text" class="form-control" id="adminUsername" name="username" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="adminPassword" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="adminPassword" name="password" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100">Login</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Error -->
-    <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="errorModalLabel">Error</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p id="errorMessage"></p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        document.getElementById('adminLoginLink').addEventListener('click', function (e) {
-            e.preventDefault();
-            const adminLoginModal = new bootstrap.Modal(document.getElementById('adminLoginModal'));
-            adminLoginModal.show();
-        });
-
-        <?php if (session()->getFlashdata('error')): ?>
-            document.addEventListener('DOMContentLoaded', function () {
-                const errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
-                document.getElementById('errorMessage').innerText = "<?= session()->getFlashdata('error'); ?>";
-                errorModal.show();
-            });
-        <?php endif; ?>
-    </script>
 </body>
 </html>

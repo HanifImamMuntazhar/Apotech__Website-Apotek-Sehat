@@ -1,42 +1,51 @@
 <?php
-// auth/processRegister.php
-session_start(); // Mulai session
-require_once '../config/database.php'; // Sertakan file koneksi database
+namespace App\Controllers;
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Ambil data dari form
-    $username = htmlspecialchars($_POST['username']);
-    $password = htmlspecialchars($_POST['password']);
-    $email = htmlspecialchars($_POST['email']);
+use CodeIgniter\Controller;
 
-    // Validasi input
-    if (empty($username) || empty($password) || empty($email)) {
-        $_SESSION['error'] = "Semua field harus diisi!";
-        header('Location: ../register.php'); // Redirect kembali ke halaman registrasi
-        exit;
+class Auth extends Controller
+{
+    public function login()
+    {
+        // Tampilkan halaman login (sekarang halaman user)
+        return view('user');
     }
 
-    // Hash password
-    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+    public function processLogin()
+    {
+        // Logika proses login
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $username = $this->request->getPost('username');
+            $password = $this->request->getPost('password');
 
-    // Simpan data ke database
-    try {
-        $stmt = $conn->prepare("INSERT INTO users (username, password, email) VALUES (:username, :password, :email)");
-        $stmt->bindParam(':username', $username);
-        $stmt->bindParam(':password', $hashedPassword);
-        $stmt->bindParam(':email', $email);
-        $stmt->execute();
+            // Validasi input
+            if (empty($username) || empty($password)) {
+                return redirect()->to('/user')->with('error', 'Username dan Password harus diisi!');
+            }
 
-        $_SESSION['success'] = "Registrasi berhasil! Silakan login.";
-        header('Location: ../login.php'); // Redirect ke halaman login
-        exit;
-    } catch (PDOException $e) {
-        $_SESSION['error'] = "Registrasi gagal: " . $e->getMessage();
-        header('Location: ../register.php'); // Redirect kembali ke halaman registrasi
-        exit;
+            // Contoh validasi login sederhana
+            if ($username === 'admin' && $password === 'password') {
+                // Simpan status login di session
+                session()->set('isLoggedIn', true);
+                session()->set('username', $username);
+
+                // Redirect ke halaman user setelah login berhasil
+                return redirect()->to('/user/dashboard');
+            } else {
+                // Jika login gagal, kembalikan ke halaman user dengan pesan error
+                return redirect()->to('/user')->with('error', 'Username atau Password salah!');
+            }
+        } else {
+            // Jika bukan metode POST, kembalikan ke halaman user
+            return redirect()->to('/user');
+        }
     }
-} else {
-    header('Location: ../register.php'); // Redirect jika bukan metode POST
-    exit;
+
+    public function logout()
+    {
+        // Hapus session dan redirect ke halaman user
+        session()->remove('isLoggedIn');
+        session()->remove('username');
+        return redirect()->to('/user');
+    }
 }
-?>
